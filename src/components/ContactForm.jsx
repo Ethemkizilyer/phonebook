@@ -41,7 +41,7 @@ const ContactForm = () => {
             type="text"
             name="name"
             id="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            pattern="^[a-zA-ZğüşıöçĞÜŞİÖÇ]+(([' -][a-zA-ZğüşıöçĞÜŞİÖÇ ])?[a-zA-ZğüşıöçĞÜŞİÖÇ]*)*$"
             title="Ad yalnızca harf, kesme işareti, kısa çizgi ve boşluk içerebilir. Örneğin Charles de Batz de Castelmore d'Artagnan"
             required
           />
@@ -54,9 +54,7 @@ const ContactForm = () => {
             title="Telefon numarası rakam olmalı ve boşluk, tire, parantez içerebilir ve + ile başlayabilir"
             required
           />
-          <button type='submit'>
-            Kişi Ekle
-          </button>
+          <button type="submit">Kişi Ekle</button>
         </Form>
       </Formik>
     </>
