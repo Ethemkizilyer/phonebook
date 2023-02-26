@@ -31,12 +31,13 @@ const ContactForm = () => {
             ...values,
             id: Math.ceil(Math.random() * 10000),
           };
+         
           dispatch(addContact(item));
           resetForm();
         }}
       >
         <Form>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">İsim</label>
           <Field
             type="text"
             name="name"
@@ -45,7 +46,7 @@ const ContactForm = () => {
             title="Ad yalnızca harf, kesme işareti, kısa çizgi ve boşluk içerebilir. Örneğin Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <label htmlFor="number">Number</label>
+          <label htmlFor="number">Telefon Numarası</label>
           <Field
             type="tel"
             name="number"
