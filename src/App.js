@@ -28,7 +28,6 @@ function App() {
   };
   const contactall = () => {
     const asd = editId && contacts.filter((contact) => contact.id !== editId);
-
     return asd;
   };
 
@@ -167,10 +166,7 @@ function App() {
             <ul className={style.contactListWrapper}>
               {filteredContacts?.length ? (
                 filteredContacts?.map((item) => (
-                  <li
-                    className={style.listItem}
-                    key={item.id}
-                  >
+                  <li className={style.listItem} key={item.id}>
                     <div className={style.container}>
                       <FcPhone />
                       <p className={style.p1}>{item.name + ": "}</p>
@@ -214,14 +210,25 @@ function App() {
                   }}
                   onSubmit={(values, { resetForm }) => {
                     if (
-                      toplu.find(
-                        (contact) =>
-                          contact.name.toLowerCase() ===
-                          values.name.toLocaleLowerCase()
-                      )
+                      toplu
+                        .filter((item) => item.name != nam[0].name)
+                        .find(
+                          (contact) =>
+                            contact.name.toLocaleLowerCase() ===
+                              values.name.toLocaleLowerCase() ||
+                            contact.number === values.number
+                        )
                     ) {
+                      const qwe = toplu
+                        .filter((item) => item.name != nam[0].name)
+                        .filter(
+                          (contact) =>
+                            contact.number === values.number ||
+                            contact.name.toLocaleLowerCase() ===
+                              values.name.toLocaleLowerCase()
+                        );
                       toast.info(
-                        `${values.name} is already in your contacts.`,
+                        `Kişilerinizde zaten ${qwe[0].name} adıyla kayıtlı ${qwe[0].number} tel numarası var.`,
                         {
                           position: toast.POSITION.TOP_CENTER,
                           theme: "colored",
@@ -304,14 +311,25 @@ function App() {
                   if (
                     contactall().find(
                       (contact) =>
+                        contact.number === values.number ||
                         contact.name.toLowerCase() ===
-                        values.name.toLocaleLowerCase()
+                          values.name.toLocaleLowerCase()
                     )
                   ) {
-                    toast.info(`${values.name} is already in your contacts.`, {
-                      position: toast.POSITION.TOP_CENTER,
-                      theme: "colored",
-                    });
+                    const we = contactall().filter(
+                      (contact) =>
+                        contact.number === values.number ||
+                        contact.name.toLowerCase() ===
+                          values.name.toLocaleLowerCase()
+                    );
+                    toast.info(
+                      `Kişilerinizde zaten ${we[0].name} adıyla kayıtlı ${we[0].number} tel numarası var.`,
+                      {
+                        position: toast.POSITION.TOP_CENTER,
+                        theme: "colored",
+                      }
+                    );
+
                     resetForm();
                     return "";
                   }

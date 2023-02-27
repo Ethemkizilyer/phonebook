@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const contactSlice = createSlice({
   name: "contact",
@@ -10,7 +11,23 @@ const contactSlice = createSlice({
   },
   reducers: {
     addContact(state, { payload }) {
-      state.contacts.unshift(payload);
+      const we = state.contacts?.filter(
+        (contact) =>
+          contact.number === payload.number ||
+          contact.name.toLocaleLowerCase() === payload.name.toLocaleLowerCase()
+      );
+
+      if (we?.length > 0) {
+        toast.info(
+          `Kişilerinizde zaten ${we[0].name} adıyla kayıtlı ${we[0].number} tel numarası var.`,
+          {
+            position: toast.POSITION.TOP_CENTER,
+            theme: "colored",
+          }
+        );
+      } else {
+        state.contacts.unshift(payload);
+      }
     },
     removeContact(state, { payload }) {
       state.contacts = state.contacts.filter(
