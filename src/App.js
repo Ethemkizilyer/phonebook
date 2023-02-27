@@ -274,7 +274,7 @@ function App() {
         {" "}
         Telefon Rehberi
       </h1>
-      <h3 style={{ display: "inline" }}>(React Persist)</h3>
+      <h3 style={{ display: "inline" }}>(Redux Persist)</h3>
       <div className={style.main}>
         <div>
           <ContactForm />
