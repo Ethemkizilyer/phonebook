@@ -1,16 +1,18 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { changeFilter } from '../redux/contactSlice'
+import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { changeFilter } from "../redux/contactSlice";
+import style from "./Components.module.css";
 
 const Filter = () => {
-    const dispatch = useDispatch()
-    const filter = useSelector((state) => state.contact.filter);
-    console.log(filter)
+  const dispatch = useDispatch();
+  const filter = useSelector((state) => state.contact.filter);
+
   return (
-    <label htmlFor="filter">
+    <label htmlFor="filter" className={style.filterLabel}>
       Kişi Ara
       <input
+        className={style.filterInput}
         onChange={(e) => {
           dispatch(changeFilter(e.target.value));
         }}
@@ -21,7 +23,7 @@ const Filter = () => {
         pattern="^[a-zA-ZğüşıöçĞÜŞİÖÇ]+(([' -][a-zA-ZğüşıöçĞÜŞİÖÇ ])?[a-zA-ZğüşıöçĞÜŞİÖÇ]*)*$"
       ></input>{" "}
     </label>
-  ); 
-}
+  );
+};
 
-export default Filter
+export default Filter;

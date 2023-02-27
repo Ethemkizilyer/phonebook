@@ -1,14 +1,15 @@
-import { Field, Form, Formik } from 'formik'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-import { addContact } from '../redux/contactSlice'
+import { Field, Form, Formik } from "formik";
+import React from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { addContact } from "../redux/contactSlice";
+import style from "./Components.module.css";
 
 const ContactForm = () => {
-    const dispatch=useDispatch()
-    const contacts= useSelector(state=>state.contact.contacts)
-    console.log(contacts)
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) => state.contact.contacts);
+
   return (
     <>
       <Formik
@@ -31,14 +32,17 @@ const ContactForm = () => {
             ...values,
             id: Math.ceil(Math.random() * 10000),
           };
-         
+
           dispatch(addContact(item));
           resetForm();
         }}
       >
-        <Form>
-          <label htmlFor="name">İsim</label>
+        <Form className={style.form}>
+          <label htmlFor="name" className={style.label}>
+            İsim
+          </label>
           <Field
+            className={style.input}
             type="text"
             name="name"
             id="name"
@@ -46,8 +50,11 @@ const ContactForm = () => {
             title="Ad yalnızca harf, kesme işareti, kısa çizgi ve boşluk içerebilir. Örneğin Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <label htmlFor="number">Telefon Numarası</label>
+          <label htmlFor="number" className={style.label}>
+            Telefon Numarası
+          </label>
           <Field
+            className={style.input}
             type="tel"
             name="number"
             id="number"
@@ -55,11 +62,13 @@ const ContactForm = () => {
             title="Telefon numarası rakam olmalı ve boşluk, tire, parantez içerebilir ve + ile başlayabilir"
             required
           />
-          <button type="submit">Kişi Ekle</button>
+          <button type="submit" className={style.button}>
+            Kişi Ekle
+          </button>
         </Form>
       </Formik>
     </>
   );
-}
+};
 
-export default ContactForm
+export default ContactForm;
