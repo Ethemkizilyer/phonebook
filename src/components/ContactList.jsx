@@ -22,7 +22,7 @@ const ContactList = () => {
 
   return (
     <ul className={style.contactListWrapper}>
-      {filteredContacts.map((contact) => (
+      {filteredContacts.length ? filteredContacts.map((contact) => (
         <li key={contact.id} id={contact.id} className={style.listItem}>
           <div className={style.container}>
             <FcPhone />
@@ -48,7 +48,7 @@ const ContactList = () => {
             </button>
           </div>
         </li>
-      ))}
+      )) : <p>Rehberiniz Boş</p> }
     </ul>
   );
 };
